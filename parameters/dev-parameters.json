@@ -1,0 +1,9 @@
+{
+    "Parameters": {
+      "Environment": "dev",
+      "DBName": "mydatabase",
+      "DBUser": "admin",
+      "DBPassword": "mypassword"
+    }
+  }
+  

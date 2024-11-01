@@ -1,0 +1,26 @@
+Parameters:
+  DBName:
+    Type: String
+  DBUser:
+    Type: String
+  DBPassword:
+    Type: String
+  Environment:
+    Type: String
+
+Resources:
+  MyDB:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBName: !Ref DBName
+      AllocatedStorage: 20
+      DBInstanceClass: db.t2.micro
+      Engine: mysql
+      MasterUsername: !Ref DBUser
+      MasterUserPassword: !Ref DBPassword
+      VPCSecurityGroups:
+        - !ImportValue
+            'Fn::Sub': "${Environment}-PrivateSecurityGroup"
+      Tags:
+        - Key: Name
+          Value: !Sub "${Environment}-db-instance"

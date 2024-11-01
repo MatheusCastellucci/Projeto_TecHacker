@@ -1,0 +1,15 @@
+Parameters:
+  Environment:
+    Type: String
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: "ami-12345678" # Substitua pelo ID da AMI desejada
+      SubnetId: !ImportValue
+        'Fn::Sub': "${Environment}-PublicSubnet"
+      Tags:
+        - Key: Name
+          Value: !Sub "${Environment}-ec2-instance"

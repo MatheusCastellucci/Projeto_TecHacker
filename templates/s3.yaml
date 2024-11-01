@@ -1,0 +1,13 @@
+Parameters:
+  Environment:
+    Type: String
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${Environment}-my-s3-bucket"
+      AccessControl: Private
+      Tags:
+        - Key: Name
+          Value: !Sub "${Environment}-s3-bucket"
